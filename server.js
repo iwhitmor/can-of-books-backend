@@ -14,8 +14,6 @@ db.once('open', function() {
   console.log('It works!');
 });
 
-const Book = require('./Book');
-
 const app = express();
 app.use(cors());
 
