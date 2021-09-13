@@ -7,6 +7,7 @@ const Book = require('./Book');
 
 const express = require('express');
 const cors = require('cors');
+
 const mongoose = require('mongoose');
 mongoose.connect(process.env.MONGODB_URL);
 
@@ -19,7 +20,8 @@ db.once('open', function() {
 const app = express();
 app.use(cors());
 
-app.get('/Book', async (req, res) => {
+
+app.get('/books', async (req, res) => {
   const books = await Book.find();
   
   res.send(books);
