@@ -1,6 +1,7 @@
 'use strict';
 
 require('dotenv').config();
+require('./Book');
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
@@ -11,15 +12,6 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log('It works!');
 });
-
-const bookSchema = mongoose.Schema({
-  title: String,
-  description: String,
-  status: String,
-  email: String,
-});
-
-let Book = mongoose.model('Book', bookSchema);
 
 const app = express();
 app.use(cors());
