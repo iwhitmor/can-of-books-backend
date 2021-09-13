@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const bookSchema = mongoose.Schema({
   title: String,
   description: String,
@@ -6,3 +8,5 @@ const bookSchema = mongoose.Schema({
 });
 
 let Book = mongoose.model('Book', bookSchema);
+
+module.exports = Book;
