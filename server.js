@@ -19,6 +19,8 @@ const bookSchema = mongoose.Schema({
   email: String,
 });
 
+let Book = mongoose.model('Book', bookSchema);
+
 const app = express();
 app.use(cors());
 
