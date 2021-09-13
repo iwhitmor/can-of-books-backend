@@ -2,16 +2,19 @@
 
 require('dotenv').config();
 require('./Book');
+
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect(process.env.MONGODB_URL);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log('It works!');
 });
+
+const Book = require('./Book');
 
 const app = express();
 app.use(cors());
