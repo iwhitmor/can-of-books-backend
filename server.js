@@ -1,7 +1,9 @@
+/* eslint-disable no-trailing-spaces */
 'use strict';
 
 require('dotenv').config();
-require('./Book');
+
+const Book = require('./Book');
 
 const express = require('express');
 const cors = require('cors');
@@ -16,6 +18,12 @@ db.once('open', function() {
 
 const app = express();
 app.use(cors());
+
+app.get('/Book', async (req, res) => {
+  const books = await Book.find();
+  
+  res.send(books);
+});
 
 const PORT = process.env.PORT || 3001;
 
