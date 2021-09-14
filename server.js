@@ -27,6 +27,8 @@ app.get('/books', async (req, res) => {
   res.send(books);
 });
 
+app.post('/books', postBooks);
+
 const PORT = process.env.PORT || 3001;
 
 app.get('/test', (request, response) => {
@@ -36,3 +38,11 @@ app.get('/test', (request, response) => {
 });
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
+
+function postBooks(req, res) {
+  console.log('headers', req.headers);
+  console.log('body', req.body);
+
+  res.send('reading');
+
+}
