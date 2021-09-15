@@ -32,6 +32,8 @@ app.post('/books', postBooks);
 
 app.delete('/books', deleteBook);
 
+app.put('/books', putBook);
+
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
@@ -45,6 +47,23 @@ async function postBooks(req, res) {
     res.send(newBook);
   }
   catch (err) {
+    handleError(err, res);
+  }
+}
+
+async function putBook(req, res) {
+  let id = req.params.id;
+  let bookUpdate = req.body;
+
+  let options = {
+    new: true,
+    overwrite: true,
+  };
+
+  try {
+    let updatedBook = await Book.findByIdAndUpdate(id, bookUpdate, options);
+    res.send(updatedBook);
+  } catch (err) {
     handleError(err, res);
   }
 }
