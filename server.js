@@ -30,7 +30,7 @@ app.get('/books', async (req, res) => {
 
 app.post('/books', postBooks);
 
-app.delete('/books', deleteBook);
+app.delete('/books/:id', deleteBook);
 
 app.put('/books/:id', putBook);
 
