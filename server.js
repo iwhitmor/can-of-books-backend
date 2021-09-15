@@ -30,6 +30,8 @@ app.get('/books', async (req, res) => {
 
 app.post('/books', postBooks);
 
+app.delete('/books', deleteBook);
+
 const PORT = process.env.PORT || 3001;
 
 app.get('/test', (request, response) => {
@@ -47,12 +49,25 @@ async function postBooks(req, res) {
   try {
     const newBook = await Book.create(req.body);
     res.send(newBook);
-  } catch (err) {
+  }
+  catch (err) {
     handleError(err, res);
   }
+}
 
-  function handleError(err, res) {
-    console.log(err);
-    res.status(500).send('Error!');
+async function deleteBook(req, res) {
+  let id = req.params.id;
+
+  try {
+    await Book.findByIdAndDelete(id);
+    res.status(204).send();
   }
+  catch (err) {
+    handleError(err, res);
+  }
+}
+
+function handleError(err, res) {
+  console.log(err);
+  res.status(500).send('Error!');
 }
