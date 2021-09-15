@@ -32,15 +32,13 @@ app.post('/books', postBooks);
 
 app.delete('/books', deleteBook);
 
-app.put('/books', putBook);
+app.put('/books/:id', putBook);
 
 const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
 
 async function postBooks(req, res) {
-  console.log('headers', req.headers);
-  console.log('body', req.body);
 
   try {
     const newBook = await Book.create(req.body);
