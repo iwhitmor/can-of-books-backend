@@ -13,7 +13,7 @@ mongoose.connect(process.env.MONGODB_URL);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
+db.once('open', function () {
   console.log('It works!');
 });
 
@@ -25,7 +25,7 @@ app.use(express.json());
 
 app.get('/books', async (req, res) => {
   const books = await Book.find();
-  
+
   res.send(books);
 });
 
@@ -41,10 +41,18 @@ app.get('/test', (request, response) => {
 
 app.listen(PORT, () => console.log(`listening on ${PORT}`));
 
-function postBooks(req, res) {
+async function postBooks(req, res) {
   console.log('headers', req.headers);
   console.log('body', req.body);
 
-  res.send('reading');
+  try {
+    const newBook = await Book.create.(req.body);
+    res.send(newBook);
+  } catch (err) {
+    handleError(err, res);
+  }
 
-}
+  function handleError(err, res) {
+    console.log(err);
+    res.status(500).send('Error!');
+  }
