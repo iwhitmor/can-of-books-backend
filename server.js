@@ -1,4 +1,3 @@
-/* eslint-disable no-trailing-spaces */
 'use strict';
 
 require('dotenv').config();
@@ -46,7 +45,7 @@ async function postBooks(req, res) {
   console.log('body', req.body);
 
   try {
-    const newBook = await Book.create.(req.body);
+    const newBook = await Book.create(req.body);
     res.send(newBook);
   } catch (err) {
     handleError(err, res);
@@ -56,3 +55,4 @@ async function postBooks(req, res) {
     console.log(err);
     res.status(500).send('Error!');
   }
+}
