@@ -21,7 +21,6 @@ app.use(cors());
 
 app.use(express.json());
 
-
 app.get('/books', async (req, res) => {
   const books = await Book.find();
 
